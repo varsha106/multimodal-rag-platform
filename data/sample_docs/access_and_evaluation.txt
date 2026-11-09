@@ -1,0 +1,7 @@
+Access and Evaluation Guide
+
+Source permissions must be enforced before evidence reaches the answer generator. A user should receive answers only from documents that the user is authorized to read. The retrieval layer should apply the caller's access filter before reranking so restricted text is never included in a candidate set.
+
+Evaluation uses separate measures for retrieval and answer quality. Retrieval evaluation checks whether a supporting passage appears in the returned results. Answer evaluation checks relevance, completeness, and faithfulness to the cited evidence. Citation precision matters because a correct-sounding answer with the wrong source is still a failed answer.
+
+Human reviewers should sample ordinary questions, exact identifier lookups, and questions whose answer is absent from the corpus. The absent-answer cases are important because the system should acknowledge missing evidence instead of filling the gap from general knowledge.

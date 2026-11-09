@@ -1,0 +1,9 @@
+Enterprise Knowledge Platform Overview
+
+The platform helps analysts find answers in approved internal documents without manually opening every source. It accepts PDF, Markdown, and plain-text documents, extracts their text, and divides long documents into overlapping chunks that preserve nearby context. Each chunk keeps its document title, source path, and page metadata when page information is available.
+
+Retrieval combines dense vector search with BM25 keyword search. Dense search captures paraphrases and conceptual similarity, while BM25 is strong for product names, error codes, policy numbers, and other exact terms. Reciprocal rank fusion merges the two ranked lists without requiring their raw scores to use the same scale. A reranking stage then orders the fused candidates for the final evidence set.
+
+Answers are grounded in retrieved passages. The answer generator may use only the selected evidence, and every answer includes citations that point back to the source chunks. If the indexed sources do not contain enough evidence, the correct behavior is to say that the answer is not supported rather than invent a plausible response.
+
+The ingestion pipeline records document format and modality metadata. The local implementation indexes text extracted from documents; production extractors can add OCR text, tables, and image captions while keeping the same chunk and citation contracts.
